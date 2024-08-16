@@ -14,7 +14,7 @@ export const Header = () => {
   const handleSignOut = () => {
     dispatch(signOut());
     removeCookie('token');
-    navigate.push('/signin');
+    navigate('/signin');
   };
 
   return (

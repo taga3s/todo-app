@@ -1,14 +1,15 @@
-import React from "react";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { CookiesProvider } from "react-cookie";
-import { Provider } from "react-redux";
-import { store } from "./store"
-import { createRoot } from "react-dom/client";
+import './index.css';
+
+import { CookiesProvider } from 'react-cookie';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store';
 
 const domNode = document.getElementById('root');
-const root = createRoot(domNode)
+const root = createRoot(domNode);
 root.render(
   <Provider store={store}>
     <CookiesProvider>

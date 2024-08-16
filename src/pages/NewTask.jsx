@@ -6,16 +6,19 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 import { url } from '../const';
+import { formatWithISOString } from '../utils/datetime';
 
 export const NewTask = () => {
   const [selectListId, setSelectListId] = useState();
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState('');
+  const [datetime, setDatetime] = useState('');
   const [detail, setDetail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDatetimeChange = (e) => setDatetime(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
@@ -23,8 +26,8 @@ export const NewTask = () => {
       title: title,
       detail: detail,
       done: false,
+      limit: formatWithISOString(datetime),
     };
-
     axios
       .post(`${url}/lists/${selectListId}/tasks`, data, {
         headers: {
@@ -60,9 +63,9 @@ export const NewTask = () => {
       <h2>タスク新規作成</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='new-task-form'>
-        <label>リスト</label>
+        <label htmlFor='list'>リスト</label>
         <br />
-        <select onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>
+        <select id='list' onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>
           {lists.map((list, key) => (
             <option key={key} value={list.id}>
               {list.title}
@@ -70,13 +73,17 @@ export const NewTask = () => {
           ))}
         </select>
         <br />
-        <label>タイトル</label>
+        <label htmlFor='title'>タイトル</label>
         <br />
-        <input type='text' onChange={handleTitleChange} className='new-task__title' />
+        <input id='title' type='text' onChange={handleTitleChange} className='new-task__title' />
         <br />
-        <label>詳細</label>
+        <label htmlFor='limit'>期限</label>
         <br />
-        <textarea type='text' onChange={handleDetailChange} className='new-task__detail' />
+        <input id='limit' onChange={handleDatetimeChange} type='datetime-local' />
+        <br />
+        <label htmlFor='detail'>詳細</label>
+        <br />
+        <textarea id='detail' type='text' onChange={handleDetailChange} className='new-task__detail' />
         <br />
         <button type='button' className='new-task__button' onClick={onCreateTask}>
           作成

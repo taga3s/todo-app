@@ -69,9 +69,9 @@ export const EditList = () => {
       <h2>リスト編集</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='edit-list__form'>
-        <label>タイトル</label>
+        <label htmlFor='title'>タイトル</label>
         <br />
-        <input type='text' className='edit-list__title' value={title} onChange={handleTitleChange} />
+        <input id='title' type='text' className='edit-list__title' value={title} onChange={handleTitleChange} />
         <br />
         <button type='button' className='delete-list__button' onClick={onDeleteList}>
           削除

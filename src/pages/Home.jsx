@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
 import { url } from '../const';
+import { calcUntilLimit, toJST } from '../utils/datetime';
 
 export const Home = () => {
   const [isDoneDisplay, setIsDoneDisplay] = useState('todo'); // todo->未完了 done->完了
@@ -126,7 +127,12 @@ const Tasks = (props) => {
           })
           .map((task, key) => (
             <Link to={`/lists/${selectListId}/tasks/${task.id}`} key={key} className='task-item'>
-              <span>{task.title}</span>
+              <div className='task-item__left'>
+                <span>{task.title}</span>
+                <span className='task-item__left-limit'>
+                  期限: {toJST(task.limit)}（あと{calcUntilLimit(task.limit)}）
+                </span>
+              </div>
               <span>{task.done ? '完了' : '未完了'}</span>
             </Link>
           ))}
@@ -142,7 +148,12 @@ const Tasks = (props) => {
         })
         .map((task, key) => (
           <Link to={`/lists/${selectListId}/tasks/${task.id}`} key={key} className='task-item'>
-            <span>{task.title}</span>
+            <div className='task-item__left'>
+              <span>{task.title}</span>
+              <span className='task-item__left-limit'>
+                期限: {toJST(task.limit)}（あと{calcUntilLimit(task.limit)}）
+              </span>
+            </div>
             <span>{task.done ? '完了' : '未完了'}</span>
           </Link>
         ))}

@@ -102,6 +102,19 @@
   text-decoration: none;
   color: #000000;
 
+  &__left {
+    display: flex;
+    flex-direction: column;
+
+    &-limit {
+      font-size: 14px;
+
+      @include mq(md) {
+        font-size: 12px;
+      }
+    }
+  }
+
   @include mq(md) {
     padding: 20px;
     font-size: 12px;

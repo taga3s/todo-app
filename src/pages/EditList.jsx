@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const EditList = () => {
@@ -27,7 +26,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。 ${err}`);
@@ -42,7 +41,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
@@ -63,27 +62,24 @@ export const EditList = () => {
       .catch((err) => {
         setErrorMessage(`リスト情報の取得に失敗しました。${err}`);
       });
-  }, []);
+  }, [cookies.token, listId]);
 
   return (
-    <div>
-      <Header />
-      <main className='edit-list'>
-        <h2>リスト編集</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='edit-list__form'>
-          <label>タイトル</label>
-          <br />
-          <input type='text' className='edit-list__title' value={title} onChange={handleTitleChange} />
-          <br />
-          <button type='button' className='delete-list__button' onClick={onDeleteList}>
-            削除
-          </button>
-          <button type='button' className='edit-list__button' onClick={onUpdateList}>
-            更新
-          </button>
-        </form>
-      </main>
+    <div className='edit-list'>
+      <h2>リスト編集</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='edit-list__form'>
+        <label>タイトル</label>
+        <br />
+        <input type='text' className='edit-list__title' value={title} onChange={handleTitleChange} />
+        <br />
+        <button type='button' className='delete-list__button' onClick={onDeleteList}>
+          削除
+        </button>
+        <button type='button' className='edit-list__button' onClick={onUpdateList}>
+          更新
+        </button>
+      </form>
     </div>
   );
 };

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const Home = () => {
@@ -67,19 +66,18 @@ export const Home = () => {
   };
   return (
     <div>
-      <Header />
-      <main className='task-list'>
-        <p className='error-message'>{errorMessage}</p>
-        <div>
+      <p className='error-message'>{errorMessage}</p>
+      <div>
+        <div className='task-list'>
           <div className='task-list__header'>
             <h2>リスト一覧</h2>
             <div className='task-list__menu'>
-              <p>
-                <Link to='/list/new'>リスト新規作成</Link>
-              </p>
-              <p>
-                <Link to={`/lists/${selectListId}/edit`}>選択中のリストを編集</Link>
-              </p>
+              <Link to='/list/new' className='task-list__menu-button'>
+                新規作成
+              </Link>
+              <Link to={`/lists/${selectListId}/edit`} className='task-list__menu-button'>
+                選択中のリストを編集
+              </Link>
             </div>
           </div>
           <div className='task-list__tab'>
@@ -92,21 +90,24 @@ export const Home = () => {
               );
             })}
           </div>
-          <div className='tasks'>
-            <div className='tasks__header'>
-              <h2>タスク一覧</h2>
-              <Link to='/task/new'>タスク新規作成</Link>
-            </div>
-            <div className='display-select-wrapper'>
-              <select onChange={handleIsDoneDisplayChange} className='display-select'>
-                <option value='todo'>未完了</option>
-                <option value='done'>完了</option>
-              </select>
-            </div>
-            <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay} />
-          </div>
         </div>
-      </main>
+        <hr className='divider' />
+        <div className='tasks'>
+          <div className='tasks__header'>
+            <h2>タスク一覧</h2>
+            <Link to='/task/new' className='tasks__new-button'>
+              タスク新規作成
+            </Link>
+          </div>
+          <div className='display-select-wrapper'>
+            <select onChange={handleIsDoneDisplayChange} className='display-select'>
+              <option value='todo'>未完了</option>
+              <option value='done'>完了</option>
+            </select>
+          </div>
+          <Tasks tasks={tasks} selectListId={selectListId} isDoneDisplay={isDoneDisplay} />
+        </div>
+      </div>
     </div>
   );
 };
@@ -140,13 +141,10 @@ const Tasks = (props) => {
           return task.done === false;
         })
         .map((task, key) => (
-          <li key={key} className='task-item'>
-            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className='task-item__link'>
-              {task.title}
-              <br />
-              {task.done ? '完了' : '未完了'}
-            </Link>
-          </li>
+          <Link to={`/lists/${selectListId}/tasks/${task.id}`} key={key} className='task-item'>
+            <span>{task.title}</span>
+            <span>{task.done ? '完了' : '未完了'}</span>
+          </Link>
         ))}
     </ul>
   );

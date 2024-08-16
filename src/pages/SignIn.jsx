@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { signIn } from '../authSlice';
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const SignIn = () => {
@@ -17,7 +16,7 @@ export const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = () => {
@@ -26,36 +25,33 @@ export const SignIn = () => {
       .then((res) => {
         setCookie('token', res.data.token);
         dispatch(signIn());
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`サインインに失敗しました。${err}`);
       });
   };
 
-  if (auth) return <Navigate to='/' />;
+  if (auth) return <Navigate to='/home' />;
 
   return (
-    <div>
-      <Header />
-      <main className='signin'>
-        <h2>サインイン</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='signin__form'>
-          <label className='signin__email-label'>メールアドレス</label>
-          <br />
-          <input type='email' className='signin__email-input' onChange={handleEmailChange} />
-          <br />
-          <label className='signin__password-label'>パスワード</label>
-          <br />
-          <input type='password' className='signin__password-input' onChange={handlePasswordChange} />
-          <br />
-          <button type='button' className='signin__button' onClick={onSignIn}>
-            サインイン
-          </button>
-        </form>
-        <Link to='/signup'>新規作成</Link>
-      </main>
+    <div className='signin'>
+      <h2>サインイン</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='signin__form'>
+        <label className='signin__email-label'>メールアドレス</label>
+        <br />
+        <input type='email' className='signin__email-input' onChange={handleEmailChange} />
+        <br />
+        <label className='signin__password-label'>パスワード</label>
+        <br />
+        <input type='password' className='signin__password-input' onChange={handlePasswordChange} />
+        <br />
+        <button type='button' className='signin__button' onClick={onSignIn}>
+          サインイン
+        </button>
+      </form>
+      <Link to='/signup'>新規作成はこちら</Link>
     </div>
   );
 };

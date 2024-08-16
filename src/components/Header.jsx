@@ -19,7 +19,7 @@ export const Header = () => {
 
   return (
     <header className='header'>
-      <Link to='/' className='header__title'>
+      <Link to={auth ? '/home' : '/signin'} className='header__title'>
         <h1>Your TODO</h1>
       </Link>
       {auth ? (

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const NewTask = () => {
@@ -33,7 +32,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
@@ -57,35 +56,32 @@ export const NewTask = () => {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <main className='new-task'>
-        <h2>タスク新規作成</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='new-task-form'>
-          <label>リスト</label>
-          <br />
-          <select onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>
-            {lists.map((list, key) => (
-              <option key={key} value={list.id}>
-                {list.title}
-              </option>
-            ))}
-          </select>
-          <br />
-          <label>タイトル</label>
-          <br />
-          <input type='text' onChange={handleTitleChange} className='new-task__title' />
-          <br />
-          <label>詳細</label>
-          <br />
-          <textarea type='text' onChange={handleDetailChange} className='new-task__detail' />
-          <br />
-          <button type='button' className='new-task__button' onClick={onCreateTask}>
-            作成
-          </button>
-        </form>
-      </main>
+    <div className='new-task'>
+      <h2>タスク新規作成</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='new-task-form'>
+        <label>リスト</label>
+        <br />
+        <select onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>
+          {lists.map((list, key) => (
+            <option key={key} value={list.id}>
+              {list.title}
+            </option>
+          ))}
+        </select>
+        <br />
+        <label>タイトル</label>
+        <br />
+        <input type='text' onChange={handleTitleChange} className='new-task__title' />
+        <br />
+        <label>詳細</label>
+        <br />
+        <textarea type='text' onChange={handleDetailChange} className='new-task__detail' />
+        <br />
+        <button type='button' className='new-task__button' onClick={onCreateTask}>
+          作成
+        </button>
+      </form>
     </div>
   );
 };

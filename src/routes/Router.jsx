@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { Layout } from '../components/Layout';
 import { EditList } from '../pages/EditList';
 import { EditTask } from '../pages/EditTask';
 import { Home } from '../pages/Home';
@@ -16,19 +17,21 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/signin' element={<SignIn />} />
-        <Route exact path='/signup' element={<SignUp />} />
-        {auth ? (
-          <>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/task/new' element={<NewTask />} />
-            <Route exact path='/list/new' element={<NewList />} />
-            <Route exact path='/lists/:listId/tasks/:taskId' element={<EditTask />} />
-            <Route exact path='/lists/:listId/edit' element={<EditList />} />
-          </>
-        ) : (
-          <Route exact path='/signin' element={<SignIn />} />
-        )}
+        <Route path='/' element={<Layout />}>
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/signup' element={<SignUp />} />
+          {auth ? (
+            <>
+              <Route path='/home' element={<Home />} />
+              <Route path='/task/new' element={<NewTask />} />
+              <Route path='/list/new' element={<NewList />} />
+              <Route path='/lists/:listId/tasks/:taskId' element={<EditTask />} />
+              <Route path='/lists/:listId/edit' element={<EditList />} />
+            </>
+          ) : (
+            <Route path='/signin' element={<SignIn />} />
+          )}
+        </Route>
         <Route component={<NotFound />} />
       </Routes>
     </BrowserRouter>

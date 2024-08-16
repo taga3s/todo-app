@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { signIn } from '../authSlice';
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const SignUp = () => {
@@ -35,38 +34,35 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie('token', token);
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       });
 
-    if (auth) return <Navigate to='/' />;
+    if (auth) return <Navigate to='/home' />;
   };
   return (
-    <div>
-      <Header />
-      <main className='signup'>
-        <h2>新規作成</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='signup__form'>
-          <label>メールアドレス</label>
-          <br />
-          <input type='email' onChange={handleEmailChange} className='signup__email-input' />
-          <br />
-          <label>ユーザ名</label>
-          <br />
-          <input type='text' onChange={handleNameChange} className='signup__name-input' />
-          <br />
-          <label>パスワード</label>
-          <br />
-          <input type='password' onChange={handlePasswordChange} className='signup__password-input' />
-          <br />
-          <button type='button' onClick={onSignUp} className='signup__button'>
-            作成
-          </button>
-        </form>
-      </main>
+    <div className='signup'>
+      <h2>新規作成</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='signup__form'>
+        <label>メールアドレス</label>
+        <br />
+        <input type='email' onChange={handleEmailChange} className='signup__email-input' />
+        <br />
+        <label>ユーザ名</label>
+        <br />
+        <input type='text' onChange={handleNameChange} className='signup__name-input' />
+        <br />
+        <label>パスワード</label>
+        <br />
+        <input type='password' onChange={handlePasswordChange} className='signup__password-input' />
+        <br />
+        <button type='button' onClick={onSignUp} className='signup__button'>
+          作成
+        </button>
+      </form>
     </div>
   );
 };

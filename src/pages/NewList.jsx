@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const NewList = () => {
@@ -26,7 +25,7 @@ export const NewList = () => {
         },
       })
       .then(() => {
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);
@@ -34,21 +33,18 @@ export const NewList = () => {
   };
 
   return (
-    <div>
-      <Header />
-      <main className='new-list'>
-        <h2>リスト新規作成</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='new-list__form'>
-          <label>タイトル</label>
-          <br />
-          <input type='text' onChange={handleTitleChange} className='new-list__title' />
-          <br />
-          <button type='button' onClick={onCreateList} className='new-list__button'>
-            作成
-          </button>
-        </form>
-      </main>
+    <div className='new-list'>
+      <h2>リスト新規作成</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='new-list__form'>
+        <label>タイトル</label>
+        <br />
+        <input type='text' onChange={handleTitleChange} className='new-list__title' />
+        <br />
+        <button type='button' onClick={onCreateList} className='new-list__button'>
+          作成
+        </button>
+      </form>
     </div>
   );
 };

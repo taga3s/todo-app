@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Header } from '../components/Header';
 import { url } from '../const';
 
 export const EditTask = () => {
@@ -35,7 +34,7 @@ export const EditTask = () => {
       })
       .then((res) => {
         console.log(res.data);
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。${err}`);
@@ -50,7 +49,7 @@ export const EditTask = () => {
         },
       })
       .then(() => {
-        navigate('/');
+        navigate('/home');
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);
@@ -73,51 +72,48 @@ export const EditTask = () => {
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
       });
-  }, []);
+  }, [cookies.token, listId, taskId]);
 
   return (
-    <div>
-      <Header />
-      <main className='edit-task'>
-        <h2>タスク編集</h2>
-        <p className='error-message'>{errorMessage}</p>
-        <form className='edit-task__form'>
-          <label>タイトル</label>
-          <br />
-          <input type='text' onChange={handleTitleChange} className='edit-task__title' value={title} />
-          <br />
-          <label>詳細</label>
-          <br />
-          <textarea type='text' onChange={handleDetailChange} className='edit-task__detail' value={detail} />
-          <br />
-          <div>
-            <input
-              type='radio'
-              id='todo'
-              name='status'
-              value='todo'
-              onChange={handleIsDoneChange}
-              checked={isDone === false ? 'checked' : ''}
-            />
-            未完了
-            <input
-              type='radio'
-              id='done'
-              name='status'
-              value='done'
-              onChange={handleIsDoneChange}
-              checked={isDone === true ? 'checked' : ''}
-            />
-            完了
-          </div>
-          <button type='button' className='delete-task__button' onClick={onDeleteTask}>
-            削除
-          </button>
-          <button type='button' className='edit-task__button' onClick={onUpdateTask}>
-            更新
-          </button>
-        </form>
-      </main>
+    <div className='edit-task'>
+      <h2>タスク編集</h2>
+      <p className='error-message'>{errorMessage}</p>
+      <form className='edit-task__form'>
+        <label>タイトル</label>
+        <br />
+        <input type='text' onChange={handleTitleChange} className='edit-task__title' value={title} />
+        <br />
+        <label>詳細</label>
+        <br />
+        <textarea type='text' onChange={handleDetailChange} className='edit-task__detail' value={detail} />
+        <br />
+        <div>
+          <input
+            type='radio'
+            id='todo'
+            name='status'
+            value='todo'
+            onChange={handleIsDoneChange}
+            checked={isDone === false ? 'checked' : ''}
+          />
+          未完了
+          <input
+            type='radio'
+            id='done'
+            name='status'
+            value='done'
+            onChange={handleIsDoneChange}
+            checked={isDone === true ? 'checked' : ''}
+          />
+          完了
+        </div>
+        <button type='button' className='delete-task__button' onClick={onDeleteTask}>
+          削除
+        </button>
+        <button type='button' className='edit-task__button' onClick={onUpdateTask}>
+          更新
+        </button>
+      </form>
     </div>
   );
 };

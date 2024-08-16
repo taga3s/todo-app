@@ -26,7 +26,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate('/home');
+        navigate('/');
       })
       .catch((err) => {
         setErrorMessage(`更新に失敗しました。 ${err}`);
@@ -41,7 +41,7 @@ export const EditList = () => {
         },
       })
       .then(() => {
-        navigate('/home');
+        navigate('/');
       })
       .catch((err) => {
         setErrorMessage(`削除に失敗しました。${err}`);

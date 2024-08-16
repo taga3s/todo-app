@@ -17,7 +17,7 @@ export const SignUp = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessge] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -34,13 +34,13 @@ export const SignUp = () => {
         const token = res.data.token;
         dispatch(signIn());
         setCookie('token', token);
-        navigate('/home');
+        navigate('/');
       })
       .catch((err) => {
         setErrorMessge(`サインアップに失敗しました。 ${err}`);
       });
 
-    if (auth) return <Navigate to='/home' />;
+    if (auth) return <Navigate to='/' />;
   };
   return (
     <div className='signup'>

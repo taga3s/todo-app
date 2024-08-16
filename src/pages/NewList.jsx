@@ -25,7 +25,7 @@ export const NewList = () => {
         },
       })
       .then(() => {
-        navigate('/home');
+        navigate('/');
       })
       .catch((err) => {
         setErrorMessage(`リストの作成に失敗しました。${err}`);

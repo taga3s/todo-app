@@ -17,12 +17,12 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route element={<Layout />}>
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
           {auth ? (
             <>
-              <Route path='/home' element={<Home />} />
+              <Route path='/' element={<Home />} />
               <Route path='/task/new' element={<NewTask />} />
               <Route path='/list/new' element={<NewList />} />
               <Route path='/lists/:listId/tasks/:taskId' element={<EditTask />} />

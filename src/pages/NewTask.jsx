@@ -32,7 +32,7 @@ export const NewTask = () => {
         },
       })
       .then(() => {
-        navigate('/home');
+        navigate('/');
       })
       .catch((err) => {
         setErrorMessage(`タスクの作成に失敗しました。${err}`);
@@ -53,7 +53,7 @@ export const NewTask = () => {
       .catch((err) => {
         setErrorMessage(`リストの取得に失敗しました。${err}`);
       });
-  }, []);
+  }, [cookies.token]);
 
   return (
     <div className='new-task'>

@@ -1,4 +1,5 @@
-import './index.css';
+import './styles/reset.scss';
+import './styles/utils.scss';
 
 import { CookiesProvider } from 'react-cookie';
 import { createRoot } from 'react-dom/client';

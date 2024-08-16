@@ -1,4 +1,4 @@
-import './editTask.css';
+import './editTask.scss';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -81,14 +81,14 @@ export const EditTask = () => {
       <main className='edit-task'>
         <h2>タスク編集</h2>
         <p className='error-message'>{errorMessage}</p>
-        <form className='edit-task-form'>
+        <form className='edit-task__form'>
           <label>タイトル</label>
           <br />
-          <input type='text' onChange={handleTitleChange} className='edit-task-title' value={title} />
+          <input type='text' onChange={handleTitleChange} className='edit-task__title' value={title} />
           <br />
           <label>詳細</label>
           <br />
-          <textarea type='text' onChange={handleDetailChange} className='edit-task-detail' value={detail} />
+          <textarea type='text' onChange={handleDetailChange} className='edit-task__detail' value={detail} />
           <br />
           <div>
             <input
@@ -110,10 +110,10 @@ export const EditTask = () => {
             />
             完了
           </div>
-          <button type='button' className='delete-task-button' onClick={onDeleteTask}>
+          <button type='button' className='delete-task__button' onClick={onDeleteTask}>
             削除
           </button>
-          <button type='button' className='edit-task-button' onClick={onUpdateTask}>
+          <button type='button' className='edit-task__button' onClick={onUpdateTask}>
             更新
           </button>
         </form>

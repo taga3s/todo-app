@@ -1,0 +1,30 @@
+.signin {
+  margin: 50px auto;
+  list-style: none;
+  width: 500px;
+
+  &__form {
+    margin: 25px 0;
+  }
+
+  &__email-label,
+  &__password-label {
+    color: #555555;
+  }
+
+  &__email-input,
+  &__password-input {
+    width: 100%;
+    font-size: large;
+    height: 30px;
+    margin-bottom: 25px;
+  }
+
+  &__button {
+    background-color: #242f9b;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+  }
+}

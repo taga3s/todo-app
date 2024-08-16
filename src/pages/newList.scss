@@ -1,0 +1,22 @@
+.new-list {
+  margin: 50px auto;
+  list-style: none;
+  width: 1000px;
+
+  &__form {
+    color: #555555;
+  }
+
+  &__title {
+    width: 300px;
+    margin-bottom: 25px;
+  }
+
+  &__button {
+    background-color: #242f9b;
+    color: #ffffff;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+  }
+}

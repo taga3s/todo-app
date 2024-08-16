@@ -1,4 +1,4 @@
-import './newTask.css';
+import './newTask.scss';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -65,9 +65,9 @@ export const NewTask = () => {
         <form className='new-task-form'>
           <label>リスト</label>
           <br />
-          <select onChange={(e) => handleSelectList(e.target.value)} className='new-task-select-list'>
+          <select onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>
             {lists.map((list, key) => (
-              <option key={key} className='list-item' value={list.id}>
+              <option key={key} value={list.id}>
                 {list.title}
               </option>
             ))}
@@ -75,13 +75,13 @@ export const NewTask = () => {
           <br />
           <label>タイトル</label>
           <br />
-          <input type='text' onChange={handleTitleChange} className='new-task-title' />
+          <input type='text' onChange={handleTitleChange} className='new-task__title' />
           <br />
           <label>詳細</label>
           <br />
-          <textarea type='text' onChange={handleDetailChange} className='new-task-detail' />
+          <textarea type='text' onChange={handleDetailChange} className='new-task__detail' />
           <br />
-          <button type='button' className='new-task-button' onClick={onCreateTask}>
+          <button type='button' className='new-task__button' onClick={onCreateTask}>
             作成
           </button>
         </form>

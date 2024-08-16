@@ -1,4 +1,4 @@
-import './signUp.css';
+import './signUp.scss';
 
 import axios from 'axios';
 import { useState } from 'react';
@@ -49,20 +49,20 @@ export const SignUp = () => {
       <main className='signup'>
         <h2>新規作成</h2>
         <p className='error-message'>{errorMessage}</p>
-        <form className='signup-form'>
+        <form className='signup__form'>
           <label>メールアドレス</label>
           <br />
-          <input type='email' onChange={handleEmailChange} className='email-input' />
+          <input type='email' onChange={handleEmailChange} className='signup__email-input' />
           <br />
           <label>ユーザ名</label>
           <br />
-          <input type='text' onChange={handleNameChange} className='name-input' />
+          <input type='text' onChange={handleNameChange} className='signup__name-input' />
           <br />
           <label>パスワード</label>
           <br />
-          <input type='password' onChange={handlePasswordChange} className='password-input' />
+          <input type='password' onChange={handlePasswordChange} className='signup__password-input' />
           <br />
-          <button type='button' onClick={onSignUp} className='signup-button'>
+          <button type='button' onClick={onSignUp} className='signup__button'>
             作成
           </button>
         </form>

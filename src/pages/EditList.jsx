@@ -1,4 +1,4 @@
-import './editList.css';
+import './editList.scss';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -71,15 +71,15 @@ export const EditList = () => {
       <main className='edit-list'>
         <h2>リスト編集</h2>
         <p className='error-message'>{errorMessage}</p>
-        <form className='edit-list-form'>
+        <form className='edit-list__form'>
           <label>タイトル</label>
           <br />
-          <input type='text' className='edit-list-title' value={title} onChange={handleTitleChange} />
+          <input type='text' className='edit-list__title' value={title} onChange={handleTitleChange} />
           <br />
-          <button type='button' className='delete-list-button' onClick={onDeleteList}>
+          <button type='button' className='delete-list__button' onClick={onDeleteList}>
             削除
           </button>
-          <button type='button' className='edit-list-button' onClick={onUpdateList}>
+          <button type='button' className='edit-list__button' onClick={onUpdateList}>
             更新
           </button>
         </form>

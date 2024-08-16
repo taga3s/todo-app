@@ -1,8 +1,8 @@
-import './header.css';
+import './header.scss';
 
 import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { signOut } from '../authSlice';
 
@@ -19,9 +19,11 @@ export const Header = () => {
 
   return (
     <header className='header'>
-      <h1>Todoアプリ</h1>
+      <Link to='/' className='header__title'>
+        <h1>Your TODO</h1>
+      </Link>
       {auth ? (
-        <button onClick={handleSignOut} className='sign-out-button'>
+        <button onClick={handleSignOut} className='header__sign-out-button'>
           サインアウト
         </button>
       ) : (

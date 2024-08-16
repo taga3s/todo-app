@@ -1,4 +1,4 @@
-import './home.css';
+import './home.scss';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -68,12 +68,12 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <main className='taskList'>
+      <main className='task-list'>
         <p className='error-message'>{errorMessage}</p>
         <div>
-          <div className='list-header'>
+          <div className='task-list__header'>
             <h2>リスト一覧</h2>
-            <div className='list-menu'>
+            <div className='task-list__menu'>
               <p>
                 <Link to='/list/new'>リスト新規作成</Link>
               </p>
@@ -82,18 +82,18 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className='list-tab'>
+          <div className='task-list__tab'>
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <li key={key} className={`list-tab-item ${isActive ? 'active' : ''}`} onClick={() => handleSelectList(list.id)}>
+                <button key={key} className={`task-list__tab-item ${isActive ? 'active' : ''}`} onClick={() => handleSelectList(list.id)}>
                   {list.title}
-                </li>
+                </button>
               );
             })}
-          </ul>
+          </div>
           <div className='tasks'>
-            <div className='tasks-header'>
+            <div className='tasks__header'>
               <h2>タスク一覧</h2>
               <Link to='/task/new'>タスク新規作成</Link>
             </div>
@@ -124,13 +124,10 @@ const Tasks = (props) => {
             return task.done === true;
           })
           .map((task, key) => (
-            <li key={key} className='task-item'>
-              <Link to={`/lists/${selectListId}/tasks/${task.id}`} className='task-item-link'>
-                {task.title}
-                <br />
-                {task.done ? '完了' : '未完了'}
-              </Link>
-            </li>
+            <Link to={`/lists/${selectListId}/tasks/${task.id}`} key={key} className='task-item'>
+              <span>{task.title}</span>
+              <span>{task.done ? '完了' : '未完了'}</span>
+            </Link>
           ))}
       </ul>
     );
@@ -144,7 +141,7 @@ const Tasks = (props) => {
         })
         .map((task, key) => (
           <li key={key} className='task-item'>
-            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className='task-item-link'>
+            <Link to={`/lists/${selectListId}/tasks/${task.id}`} className='task-item__link'>
               {task.title}
               <br />
               {task.done ? '完了' : '未完了'}

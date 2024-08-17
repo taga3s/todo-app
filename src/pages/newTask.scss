@@ -1,12 +1,15 @@
+@import '../styles/vars';
+
 .new-task {
   &__form {
     margin-top: 24px;
-    color: #555555;
+    color: $black;
   }
 
   &__select-list,
   &__title,
-  &__detail {
+  &__detail,
+  &__datetime {
     width: 300px;
     margin-bottom: 25px;
   }
@@ -16,8 +19,8 @@
   }
 
   &__button {
-    background-color: #242f9b;
-    color: #ffffff;
+    background-color: $blue;
+    color: $white;
     width: 80px;
     height: 40px;
     border-radius: 5px;

@@ -1,7 +1,9 @@
+@import '../styles/vars';
+
 .new-list {
   &__form {
     margin-top: 24px;
-    color: #555555;
+    color: $black;
   }
 
   &__title {
@@ -10,8 +12,8 @@
   }
 
   &__button {
-    background-color: #242f9b;
-    color: #ffffff;
+    background-color: $blue;
+    color: $white;
     width: 80px;
     height: 40px;
     border-radius: 5px;

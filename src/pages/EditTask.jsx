@@ -89,7 +89,7 @@ export const EditTask = () => {
         <br />
         <label htmlFor='limit'>期限</label>
         <br />
-        <input id='limit' onChange={handleDatetimeChange} type='datetime-local' value={datetime} />
+        <input id='limit' onChange={handleDatetimeChange} type='datetime-local' className='edit-task__datetime' value={datetime} />
         <br />
         <label htmlFor='detail'>詳細</label>
         <br />

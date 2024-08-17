@@ -1,18 +1,21 @@
+@import '../styles/vars';
+
 .edit-task {
   &__form {
     margin-top: 24px;
-    color: #555555;
+    color: $black;
   }
 
   &__title,
-  &__detail {
+  &__detail,
+  &__datetime {
     width: 300px;
     margin-bottom: 25px;
   }
 
   &__button {
-    background-color: #242f9b;
-    color: #ffffff;
+    background-color: $blue;
+    color: $white;
     width: 80px;
     height: 40px;
     border-radius: 5px;
@@ -21,8 +24,8 @@
 
 .delete-task {
   &__button {
-    color: #ff3333;
-    border: solid 1px #ff3333;
+    color: $red;
+    border: solid 1px $red;
     width: 80px;
     height: 40px;
     margin: 25px 5px;

@@ -111,6 +111,8 @@
       font-size: 14px;
 
       @include mq(md) {
+        display: flex;
+        flex-direction: column;
         font-size: 12px;
       }
     }

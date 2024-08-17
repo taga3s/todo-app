@@ -81,16 +81,24 @@ export const Home = () => {
               </Link>
             </div>
           </div>
-          <div className='task-list__tab'>
+          <ul className='task-list__tab'>
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
-                <button key={key} className={`task-list__tab-item ${isActive ? 'active' : ''}`} onClick={() => handleSelectList(list.id)}>
+                <li
+                  key={key}
+                  className={`task-list__tab-item ${isActive ? 'active' : ''}`}
+                  onKeyDown={(e) => (e.key === 'Enter' ? handleSelectList(list.id) : {})}
+                  onClick={() => handleSelectList(list.id)}
+                  tabIndex={'0'}
+                  aria-label='Choose list item'
+                  role='button'
+                >
                   {list.title}
-                </button>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
         <hr className='divider' />
         <div className='tasks'>
@@ -150,9 +158,10 @@ const Tasks = (props) => {
           <Link to={`/lists/${selectListId}/tasks/${task.id}`} key={key} className='task-item'>
             <div className='task-item__left'>
               <span>{task.title}</span>
-              <span className='task-item__left-limit'>
-                期限: {toJST(task.limit)}（あと{calcUntilLimit(task.limit)}）
-              </span>
+              <div className='task-item__left-limit'>
+                <span>期限: {toJST(task.limit)}</span>
+                <span>（あと{calcUntilLimit(task.limit)}）</span>
+              </div>
             </div>
             <span>{task.done ? '完了' : '未完了'}</span>
           </Link>

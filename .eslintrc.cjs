@@ -6,12 +6,14 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    // 'plugin:jsx-a11y/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', 'node_modules'],
   parserOptions: {
     sourceType: 'module',
+    ecmaVersion: 'latest',
+    ecmaFeatures: { jsx: true },
   },
   plugins: ['react-refresh', 'simple-import-sort'],
   rules: {

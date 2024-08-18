@@ -66,7 +66,7 @@ export const EditList = () => {
 
   return (
     <div className='edit-list'>
-      <h2>リスト編集</h2>
+      <h2 className='edit-list__header'>リスト編集</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='edit-list__form'>
         <label htmlFor='title'>タイトル</label>

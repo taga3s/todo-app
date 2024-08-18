@@ -44,7 +44,7 @@ export const SignUp = () => {
   };
   return (
     <div className='signup'>
-      <h2>新規作成</h2>
+      <h2 className='signup__header'>新規作成</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='signup__form'>
         <label htmlFor='email'>メールアドレス</label>

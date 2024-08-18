@@ -60,9 +60,9 @@ export const NewTask = () => {
 
   return (
     <div className='new-task'>
-      <h2>タスク新規作成</h2>
+      <h2 className='new-task__header'>タスク新規作成</h2>
       <p className='error-message'>{errorMessage}</p>
-      <form className='new-task-form'>
+      <form className='new-task__form'>
         <label htmlFor='list'>リスト</label>
         <br />
         <select id='list' onChange={(e) => handleSelectList(e.target.value)} className='new-task__select-list'>

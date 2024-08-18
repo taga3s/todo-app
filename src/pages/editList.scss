@@ -1,6 +1,15 @@
+@import '../styles/mixin';
 @import '../styles/vars';
 
 .edit-list {
+  &__header {
+    font-size: 24px;
+
+    @include mq(md) {
+      font-size: 20px;
+    }
+  }
+
   &__form {
     margin-top: 24px;
     color: $black;

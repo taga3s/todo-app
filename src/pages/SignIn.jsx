@@ -36,7 +36,7 @@ export const SignIn = () => {
 
   return (
     <div className='signin'>
-      <h2>サインイン</h2>
+      <h2 className='signin__header'>サインイン</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='signin__form'>
         <label htmlFor='email' className='signin__email-label'>

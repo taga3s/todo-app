@@ -34,7 +34,7 @@ export const NewList = () => {
 
   return (
     <div className='new-list'>
-      <h2>リスト新規作成</h2>
+      <h2 className='new-list__header'>リスト新規作成</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='new-list__form'>
         <label htmlFor='title'>タイトル</label>

@@ -10,13 +10,17 @@
   justify-content: space-between;
   padding: 0 32px;
 
+  @include mq(md) {
+    height: 54px;
+  }
+
   &__title {
     text-decoration: none;
-    font-size: 16px;
+    font-size: 32px;
     color: $white;
 
     @include mq(md) {
-      font-size: 14px;
+      font-size: 24px;
     }
   }
 

@@ -80,7 +80,7 @@ export const EditTask = () => {
 
   return (
     <div className='edit-task'>
-      <h2>タスク編集</h2>
+      <h2 className='edit-task__header'>タスク編集</h2>
       <p className='error-message'>{errorMessage}</p>
       <form className='edit-task__form'>
         <label htmlFor='title'>タイトル</label>

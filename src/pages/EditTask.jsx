@@ -25,7 +25,7 @@ export const EditTask = () => {
     const data = {
       title: title,
       detail: detail,
-      done: false,
+      done: isDone,
       limit: formatWithISOString(datetime),
     };
 

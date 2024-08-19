@@ -1,7 +1,7 @@
 import './home.scss';
 
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
@@ -65,6 +65,46 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+
+  // https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback
+  // https://web.dev/articles/control-focus-with-tabindex?hl=ja
+  const listItemRefs = useRef([]);
+  const listItemRefsCallback = useMemo(() => {
+    return (node) => {
+      if (node !== null && !listItemRefs.current.includes(node)) {
+        listItemRefs.current.push(node);
+      }
+    };
+  }, [lists]);
+
+  const handleSwitchList = (e) => {
+    const targetId = e.target.id;
+    const currentIndex = listItemRefs.current.findIndex((ref) => ref.id === targetId);
+    const nextIndex = currentIndex + 1;
+    const prevIndex = currentIndex - 1;
+
+    if (e.key === 'ArrowRight' && currentIndex < listItemRefs.current.length - 1) {
+      listItemRefs.current.forEach((ref, index) => {
+        if (index === nextIndex) {
+          ref.tabIndex = 0;
+          ref.focus();
+        } else {
+          ref.tabIndex = -1;
+        }
+      });
+    }
+    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+      listItemRefs.current.forEach((ref, index) => {
+        if (index === prevIndex) {
+          ref.tabIndex = 0;
+          ref.focus();
+        } else {
+          ref.tabIndex = -1;
+        }
+      });
+    }
+  };
+
   return (
     <div>
       <p className='error-message'>{errorMessage}</p>
@@ -81,17 +121,19 @@ export const Home = () => {
               </Link>
             </div>
           </div>
-          <ul className='task-list__tab'>
+          <ul className='task-list__tab' onKeyDown={handleSwitchList}>
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
               return (
                 <li
+                  id={list.id}
                   key={key}
                   className={`task-list__tab-item ${isActive ? 'active' : ''}`}
-                  onKeyDown={(e) => (e.key === 'Enter' ? handleSelectList(list.id) : {})}
                   onClick={() => handleSelectList(list.id)}
-                  tabIndex={'0'}
-                  aria-label='Choose list item'
+                  onKeyDown={(e) => (e.key === 'Enter' ? handleSelectList(list.id) : {})}
+                  ref={listItemRefsCallback}
+                  tabIndex={`${key === 0 ? 0 : -1}`}
+                  aria-label='リストを選択する'
                   role='button'
                 >
                   {list.title}
